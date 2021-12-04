@@ -29,8 +29,11 @@ function NavComponent() {
 
 
 
-        <nav className="navbar navbar-expand-sm bg-dark">
-          <ul className="nav_bar navbar-nav" style={{listStyle:'none',width:'100%',display:'flex'}}>
+        <nav className="navbar navbar-expand-sm bg-dark ">
+         <div className="row">
+         <div className="col-md-4"><h1 className="text-white">REACT</h1></div>
+         <div className="col-md-8">
+          <ul className="nav_bar navbar-nav " style={{listStyle:'none',width:'100%'}}>
             <li className="nav-item">
               <Link  className="nav-link" to="/">Home</Link>
             </li>
@@ -42,6 +45,8 @@ function NavComponent() {
             </li>
             <li>{theme}</li>
           </ul>
+          </div>
+          </div>
         </nav>
 
         {/* A <Switch> looks through its children <Route>s and
