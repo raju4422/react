@@ -39,7 +39,7 @@ useEffect(()=>{
     <div className="App">
 {/* <GetdataComponent></GetdataComponent> */}
 <ThemeContext.Provider value={isActive}>
-<ThemeContext2.Provider value="Hello Raju">
+<ThemeContext2.Provider value="Hello Raju 1234">
 <CustomContext.Provider value="Rhoney">
 
 <NavComponent/>
