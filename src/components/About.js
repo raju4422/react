@@ -8,7 +8,7 @@ function About() {
         <div>
             
             <div  className="container">
-                <div className="">
+                <div className="layer">
                 <div className="row">
 
                 <div className="col-md-6">

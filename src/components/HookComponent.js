@@ -37,7 +37,7 @@
     
      function submit(e) {
        e.preventDefault();
-       form_validations();
+       // form_validations();
        setLoading(true);
 
 
@@ -53,7 +53,7 @@
           })
          if(res.status==200){
           setResponse('Success...')
-         setLoading(false);
+          setLoading(false);
          }else{
           setResponse('Failed...');
           setLoading(false);

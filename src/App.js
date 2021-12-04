@@ -37,17 +37,14 @@ useEffect(()=>{
 
   return (
     <div className="App">
-{/* <GetdataComponent></GetdataComponent> */}
-<ThemeContext.Provider value={isActive}>
-<ThemeContext2.Provider value="Hello Raju 1234">
+{/*<ThemeContext.Provider value={isActive}>
 <CustomContext.Provider value="Rhoney">
 
 <NavComponent/>
 <BodyComponent/>
 </CustomContext.Provider>
-</ThemeContext2.Provider>
 
-</ThemeContext.Provider>
+</ThemeContext.Provider>*/}
 
 
 {/* <HookComponent/> */}
