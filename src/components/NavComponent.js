@@ -8,6 +8,8 @@ import {
   } from "react-router-dom";
 
   import About from '../components/About';
+    import Home from '../components/Home';
+
   
   import Users from '../components/Users';
   import Edit from '../components/Edit'
@@ -22,17 +24,21 @@ function NavComponent() {
 
     return (
         <Router>
-      <div className="container">
-        <nav>
-          <ul className="nav_bar" style={{listStyle:'none',width:'100%',display:'flex'}}>
-            <li>
-              <Link  to="/">Home</Link>
+      <div className="">
+          
+
+
+
+        <nav className="navbar navbar-expand-sm bg-dark">
+          <ul className="nav_bar navbar-nav" style={{listStyle:'none',width:'100%',display:'flex'}}>
+            <li className="nav-item">
+              <Link  className="nav-link" to="/">Home</Link>
             </li>
-            <li>
-              <Link to="/about">Add</Link>
+            <li className="nav-item">
+              <Link className="nav-link" to="/about">Add</Link>
             </li>
-            <li>
-              <Link to="/users">Users</Link>
+            <li className="nav-item">
+              <Link className="nav-link" to="/users">Users</Link>
             </li>
             <li>{theme}</li>
           </ul>
@@ -41,6 +47,8 @@ function NavComponent() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
+        <Route path="/" exact component={Home}>
+          </Route>
           <Route path="/about" component={About}>
           </Route>
           <Route path="/users" component={Users}>

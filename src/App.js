@@ -13,6 +13,9 @@ import BodyComponent from './components/BodyComponent'
 import React,{useState,useEffect,createContext} from 'react'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css';
+import Header from './components/includes/Header'
+import Footer from './components/includes/Footer'
+
 
 import  {CustomContext}  from './contexts/ContextProvider';
 
@@ -37,6 +40,10 @@ useEffect(()=>{
 
   return (
     <div className="App">
+    <Header/>
+
+      <Footer/>
+
 {/*<ThemeContext.Provider value={isActive}>
 <CustomContext.Provider value="Rhoney">
 

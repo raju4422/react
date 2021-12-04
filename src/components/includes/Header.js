@@ -1,10 +1,18 @@
 
-import React from 'react'
+import React from 'react';
+import NavComponent from '../NavComponent';
+
 
 function Header(){
 	return(
 
-         <div>Header</div
+         <div> 
+        <NavComponent />
+
+
+         </div>
+         
 
 		)
 }
+export default Header;
