@@ -15,7 +15,7 @@
      const [loading,setLoading]=useState(false);
      const [sent ,setSent]=useState(false);
      const [error,setError]=useState({name:'',email:'',password:''});
-     const { register, handleSubmit, formState: { errors } } = useForm();
+     const { register, handleSubmit, formState: { errors },reset } = useForm();
    
     
      const submit = (data)=> {
@@ -26,12 +26,11 @@
         name:data.name,
       })
         .then(res => {
-          setData({
-            name:'',email:'',password:''
-          })
+          reset();
          if(res.status==200){
           setResponse(true)
           setSent(true);
+
          }else{
           setResponse(false);
           setSent(false);

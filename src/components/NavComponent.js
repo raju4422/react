@@ -25,11 +25,36 @@ function NavComponent() {
     return (
         <Router>
       <div className="">
+
+
+       <nav className="navbar navbar-expand-lg navStyle">
+            <a className="brand-navbar" href="#"><img src="image/logo.png" alt="Responsive image" height="60px"/></a>
+            <button className="navbar-toggler" data-toggle="collapse" data-target="#mainMenu">
+                <span><i className="fas fa-align-right iconStyle"></i></span>
+            </button>
+            <div className="collapse navbar-collapse" id="mainMenu">
+                <ul className="navbar-nav ml-auto navList">
+                    <li className="nav-item active"><Link to="/" className="nav-link"><i className="fas fa-home"></i>HOME<span className="sr-only">(current)</span></Link></li>
+                    <li className="nav-item">
+                        <Link to="/about" className="nav-link"><i className="fas fa-cogs"></i>Services</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/" className="nav-link"><i className="fas fa-briefcase"></i>Portfolio</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/users" className="nav-link"><i className="fas fa-phone"></i>Users</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/about" className="nav-link"><i className="fas fa-users"></i>About</Link>
+                    </li>
+                </ul>
+            </div>
+        </nav>
           
 
 
 
-        <nav className="navbar navbar-expand-sm bg-dark ">
+     {/*   <nav className="navbar navbar-expand-sm bg-dark ">
          <div className="row">
          <div className="col-md-4"><h1 className="text-white">REACT</h1></div>
          <div className="col-md-8">
@@ -48,7 +73,7 @@ function NavComponent() {
           </div>
           </div>
         </nav>
-
+*/}
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
