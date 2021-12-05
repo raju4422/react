@@ -4,8 +4,6 @@ import Users from '../components/Users';
 
 
 
- 
-
 const layerStyles={
   width:'100%',
   height:'100%',
@@ -13,14 +11,13 @@ const layerStyles={
    opacity:'0.5',
    textAlign:'center',
    zIndex:'100',
-  
+
 
 }
 
 function About() {
 
-    const [effect,setEffect]=useState(false);
-
+const [effect,setEffect]=useState(false);
   const layer = (value) => {
     setEffect(true)
 

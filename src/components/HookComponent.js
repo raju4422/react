@@ -1,7 +1,8 @@
- import react, {useState}from 'react'
+ import react, {useState,useEffect}from 'react'
  import axios from 'axios';
  import About from '../components/About'
  import LoadingComponent from '../components/LoadingComponent'
+ import { useForm } from "react-hook-form";
  
 
 
@@ -10,58 +11,40 @@
 
  function HookComponent(props){
      const [data,setData]=useState({name:'',email:'',password:''});
-     const [response,setResponse]=useState();
+     const [response,setResponse]=useState(false);
      const [loading,setLoading]=useState(false);
      const [sent ,setSent]=useState(false);
-
-
-     const [error,setError]=useState({isError:'',name:'',email:'',password:''});
-
+     const [error,setError]=useState({name:'',email:'',password:''});
+     const { register, handleSubmit, formState: { errors } } = useForm();
    
-
-     function form_validations(){
-      
-      if(data.name.trim()==="" || data.email.trim()==="" || data.password===""){
-        if(data.name.trim()===""){
-          setError({...error,
-            isError:'error',
-            name:'Name Field is required'
-          });
-
-          
-        }
-
-        console.log(error)
-      }
-     
-    }
     
-     function submit(e) {
-       e.preventDefault();
-       // form_validations();
-       // setLoading(true);
-
-
+     const submit = (data)=> {
+      
       axios.post('http://localhost/react/reactPhp/index.php/home/insert',{
         email:data.email,
         password:data.password,
         name:data.name,
       })
         .then(res => {
-          // empty();
           setData({
             name:'',email:'',password:''
           })
          if(res.status==200){
-          setResponse('Success...')
+          setResponse(true)
           setSent(true);
          }else{
-          setResponse('Failed...');
+          setResponse(false);
           setSent(false);
 
          }
         })
+
+       
       
+    }
+    const form_error={
+      color:'red',
+      textAlign:'left'
     }
 
    
@@ -75,19 +58,31 @@
                 {loading ? <LoadingComponent/>:null}
                 
                <div  >{response ? <div className="alert alert-success " role="alert">Success...</div>:null}</div>
-              <form onSubmit={(e)=>submit(e)} >
+           
+
+              <form onSubmit={handleSubmit(submit)} >
                 <div className="row pb-1">
-                  <div className="col-md-3 col-3 "><label  className="form-label">Email address</label></div>
-                  <div className="col-md-9 col-9"><input type="email" value={data.email} className="form-control" onChange={e=>setData({...data,email:e.target.value})}/></div>
-                   <small>{error.name}</small>
+                  <div className="col-md-3 col-3 text-right"><label  className="form-label">Email address</label></div>
+                  <div className="col-md-9 col-9">
+                  <input type="email"  {...register("email", { required: 'Email Field is required' })} className="form-control"  />
+                  <div className="text-left">{errors.email && <span style={form_error}>{errors.email.message}</span>}</div>
+                  </div>
+                        
+                  
                 </div>
                 <div className="row pb-1">
-                  <div className="col-md-3 col-3 "><label  className="form-label">Password</label></div>
-                  <div className="col-md-9 col-9"><input type="password" value={data.password} className="form-control" onChange={e=>setData({...data,password:e.target.value})}/></div>
+                  <div className="col-md-3 col-3 text-right"><label  className="form-label">Password</label></div>
+                  <div className="col-md-9 col-9"><input type="password" {...register("password", { required: 'Password Field is required' })} className="form-control" />
+                     <div className="text-left">{errors.password && <span style={form_error}>{errors.password.message}</span>}</div>
+                  </div>
                 </div>
                 <div className="row pb-1">
-                  <div className="col-md-3 col-3 "><label  className="form-label">Name</label></div>
-                  <div className="col-md-9 col-9"><input type="text" value={data.name} className="form-control" onChange={e=>setData({...data,name:e.target.value})}/></div>
+                  <div className="col-md-3 col-3 text-right"><label  className="form-label">Name</label></div>
+                  <div className="col-md-9 col-9"><input type="text"  className="form-control" {...register("name", { required: 'Name Field is required' })}/>
+                    <div className="text-left">{errors.name && <span style={form_error}>{errors.name.message}</span>}</div>
+
+                  </div>
+
                 </div>
                
               <div className="" style={{textAlign:'center'}}>
