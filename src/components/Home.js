@@ -6,7 +6,7 @@ function Home(){
 	return(
 
          <div> 
-         <section classNameName="bg-primary">
+         <section className="">
              <h1>Home</h1>
              <div className="d-flex container">
              <div className="row">

@@ -28,7 +28,7 @@ function NavComponent() {
 
 
        <nav className="navbar navbar-expand-lg navStyle">
-            <a className="brand-navbar" href="#"><img src="image/logo.png" alt="Responsive image" height="60px"/></a>
+            <Link className="brand-navbar" to="/"><img src="https://miro.medium.com/max/282/1*JSFjofdjIH5RDVf-qOODGw.png" alt="Responsive image" height="60px"/></Link>
             <button className="navbar-toggler" data-toggle="collapse" data-target="#mainMenu">
                 <span><i className="fas fa-align-right iconStyle"></i></span>
             </button>
