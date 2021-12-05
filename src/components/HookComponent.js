@@ -6,13 +6,14 @@
 
 
 
- const cors = require('cors')
  
 
  function HookComponent(props){
      const [data,setData]=useState({name:'',email:'',password:''});
      const [response,setResponse]=useState();
      const [loading,setLoading]=useState(false);
+     const [sent ,setSent]=useState(false);
+
 
      const [error,setError]=useState({isError:'',name:'',email:'',password:''});
 
@@ -38,7 +39,7 @@
      function submit(e) {
        e.preventDefault();
        // form_validations();
-       setLoading(true);
+       // setLoading(true);
 
 
       axios.post('http://localhost/react/reactPhp/index.php/home/insert',{
@@ -53,12 +54,10 @@
           })
          if(res.status==200){
           setResponse('Success...')
-          setLoading(false);
+          setSent(true);
          }else{
           setResponse('Failed...');
-          setLoading(false);
-        
-          
+          setSent(false);
 
          }
         })
@@ -92,7 +91,9 @@
                 </div>
                
               <div className="" style={{textAlign:'center'}}>
-              <button type="submit" className="btn btn-primary btn-lg" >Submit</button>
+              <button type="submit" onClick = {()=>{
+                props.layer(sent)
+              }} className="btn btn-primary btn-lg" >Submit</button>
               </div>
               </form>
 
