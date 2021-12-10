@@ -12,11 +12,13 @@
  function HookComponent(props){
      const [data,setData]=useState({name:'',email:'',password:''});
      const [response,setResponse]=useState(false);
-     const [loading,setLoading]=useState(false);
      const [sent ,setSent]=useState(false);
-     const [error,setError]=useState({name:'',email:'',password:''});
      const { register, handleSubmit, formState: { errors },reset } = useForm();
-   
+     
+
+     useEffect(()=>{
+
+     },[sent])
     
      const submit = (data)=> {
       
@@ -30,11 +32,12 @@
          if(res.status==200){
           setResponse(true)
           setSent(true);
+         
 
          }else{
           setResponse(false);
-          setSent(false);
-
+          setSent('zzdfdf');
+           
          }
         })
 
@@ -54,7 +57,7 @@
               <div className="container loading_cont pt-5">
 
 
-                {loading ? <LoadingComponent/>:null}
+               
                 
                <div  >{response ? <div className="alert alert-success " role="alert">Success...</div>:null}</div>
            
@@ -85,8 +88,11 @@
                 </div>
                
               <div className="" style={{textAlign:'center'}}>
-              <button type="submit" onClick = {()=>{
-                props.layer(sent)
+              <button type="submit" onClick = {(e)=>{
+                // props.layer(sent)
+                console.log(sent)
+              
+                
               }} className="btn btn-primary btn-lg" >Submit</button>
               </div>
               </form>

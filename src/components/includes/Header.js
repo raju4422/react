@@ -9,7 +9,6 @@ function Header(){
          <div> 
         <NavComponent />
 
-
          </div>
          
 

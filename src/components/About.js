@@ -1,6 +1,10 @@
 import React,{useState} from 'react';
 import HookComponent from '../components/HookComponent';
 import Users from '../components/Users';
+import { useSelector } from 'react-redux';
+
+
+
 
 
 
@@ -17,10 +21,16 @@ const layerStyles={
 
 function About() {
 
-const [effect,setEffect]=useState(false);
-  const layer = (value) => {
-    setEffect(true)
 
+    
+  const state = useSelector((state)=>state);
+  console.log(state,'hello');
+
+const [effect,setEffect]=useState(false);
+
+  const layer = (value) => {
+    console.log(value);
+    setEffect(value);
      const timer = setTimeout(() => {
      setEffect(false)
   }, 1000);

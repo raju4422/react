@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState,useEffect, useMemo} from 'react'
 import axios from 'axios'
 import {
     BrowserRouter as Router,
@@ -26,17 +26,13 @@ function Users() {
 
     }
     
-  useEffect(()=>{
-      let is_mounted=true;
-    axios.get('http://localhost/react/reactPhp/index.php/home/get_data').then(res=>{
-        if(is_mounted){
-            setResult(res.data);
-        }
-         
-    })
 
 
-    return () => {is_mounted=false};
+
+    const usersFunction = useMemo(()=>{
+        axios.get('http://localhost/react/reactPhp/index.php/home/get_data').then(res=>{
+             setResult(res.data);
+        })
     },[result])
 
  
@@ -45,7 +41,7 @@ function Users() {
 
 
     return (
-        <div>
+        <div className="container">
             <h1>Users</h1>
             <table className="table table-bordered">
              <thead>

@@ -10,14 +10,15 @@ import GetdataComponent from './components/GetdataComponent';
 import HookComponent from './components/HookComponent'
 import NavComponent from './components/NavComponent'
 import BodyComponent from './components/BodyComponent'
-import React,{useState,useEffect,createContext} from 'react'
+import React,{useState,useEffect,createContext} from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css';
-import Header from './components/includes/Header'
-import Footer from './components/includes/Footer'
-
-
+import Header from './components/includes/Header';
+import Footer from './components/includes/Footer';
 import  {CustomContext}  from './contexts/ContextProvider';
+
+
 
 export const ThemeContext = createContext();
 export const ThemeContext2 = createContext();
@@ -25,24 +26,31 @@ export const ThemeContext2 = createContext();
 
 function App() {
 
+  const state = useSelector((state)=>state);
+console.log(state);
   const [isActive, setIsActive]=useState(0);
-  
-useEffect(()=>{
+  const [isLoggedIn, setIsLoggedIn]=useState(false)
 
-  axios.get(`http://localhost/react/reactPhp/index.php/home/session`).then(res=>{
+  
+// useEffect(()=>{
+
+//   axios.get(`http://localhost/react/reactPhp/index.php/home/session`).then(res=>{
            
-        setIsActive(res.data);
+//         setIsLoggedIn(false);
         
             
-        })
+//         })
 
-},[])
+// },[])
 
   return (
     <div className="App">
-    <Header/>
 
+    <ThemeContext.Provider value={isLoggedIn}>
+      <Header/>
       <Footer/>
+  </ThemeContext.Provider>
+
 
 {/*<ThemeContext.Provider value={isActive}>
 <CustomContext.Provider value="Rhoney">

@@ -7,23 +7,30 @@ import {
     Link
   } from "react-router-dom";
 
-  import About from '../components/About';
-    import Home from '../components/Home';
+import About from '../components/About';
+import Home from '../components/Home';
+import Login from '../components/Login';
+import Users from '../components/Users';
+import Edit from '../components/Edit';
+import ReducerFunction from '../components/ReducerFunction'
 
-  
-  import Users from '../components/Users';
-  import Edit from '../components/Edit'
 
-  import {useState,useEffect,useContext} from 'react'
-  import {ThemeContext} from '../App'
+import {useState,useEffect,useContext} from 'react'
+import {ThemeContext} from '../App'
+import Redux from './Redux';
+
 
 
 function NavComponent() {
-  const theme = React.useContext(ThemeContext);
+  const Theme = React.useContext(ThemeContext);
 
+  const activeChange=(e)=>{
+console.log(e.target);
+  }
 
     return (
         <Router>
+
       <div className="">
 
 
@@ -36,17 +43,29 @@ function NavComponent() {
                 <ul className="navbar-nav ml-auto navList">
                     <li className="nav-item active"><Link to="/" className="nav-link"><i className="fas fa-home"></i>HOME<span className="sr-only">(current)</span></Link></li>
                     <li className="nav-item">
-                        <Link to="/about" className="nav-link"><i className="fas fa-cogs"></i>Services</Link>
+                        <Link to="/" className="nav-link" onClick={activeChange}><i className="fas fa-cogs"></i>Services</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/" className="nav-link"><i className="fas fa-briefcase"></i>Portfolio</Link>
+                        <Link to="/" className="nav-link" onClick={activeChange}><i className="fas fa-briefcase"></i>Portfolio</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/users" className="nav-link"><i className="fas fa-phone"></i>Users</Link>
+                        <Link to="/users" className="nav-link" onClick={activeChange}><i className="fas fa-phone"></i>Users</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/about" className="nav-link"><i className="fas fa-users"></i>About</Link>
+                        <Link to="/about" className="nav-link" onClick={activeChange}><i className="fas fa-users"></i>About</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link to="/useReducer" className="nav-link" ><i className="fas fa-users"></i>Use Reducer</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/redux" className="nav-link" ><i className="fas fa-users"></i>Redux</Link>
+                    </li>
+                    {Theme ?  <li>
+                      <a href="#" className="nav-link">Logout</a>
+                    </li> :  <li>
+                      <Link to="/login" className="nav-link">Login</Link>
+                    </li> }
+                   
                 </ul>
             </div>
         </nav>
@@ -84,8 +103,13 @@ function NavComponent() {
           <Route path="/users" component={Users}>
            
           </Route>
+           <Route path="/login" component={Login}>
+           
+          </Route>
 
           <Route path="/edit/:id" component={Edit} />
+           <Route path="/useReducer" component={ReducerFunction} />
+           <Route path="/redux" component={Redux} />
 
 
         
