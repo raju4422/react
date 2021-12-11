@@ -27,7 +27,7 @@ export const ThemeContext2 = createContext();
 function App() {
 
   const state = useSelector((state)=>state);
-console.log(state);
+   console.log(state);
   const [isActive, setIsActive]=useState(0);
   const [isLoggedIn, setIsLoggedIn]=useState(false)
 

@@ -3,6 +3,9 @@
  import About from '../components/About'
  import LoadingComponent from '../components/LoadingComponent'
  import { useForm } from "react-hook-form";
+ import {useDispatch} from 'react-redux'
+
+
  
 
 
@@ -10,6 +13,8 @@
  
 
  function HookComponent(props){
+      const dispatch = useDispatch();
+
      const [data,setData]=useState({name:'',email:'',password:''});
      const [response,setResponse]=useState(false);
      const [sent ,setSent]=useState(false);
@@ -32,6 +37,7 @@
          if(res.status==200){
           setResponse(true)
           setSent(true);
+          getUsersData();
          
 
          }else{
@@ -44,6 +50,17 @@
        
       
     }
+
+
+    const getUsersData = async ()=>{
+        
+      const response = await axios.get('http://localhost/react/reactPhp/index.php/home/get_data').catch((error)=>{
+          console.log(error);
+      })
+
+      dispatch({type:'GET_USERS',payload:response.data});
+
+  } 
     const form_error={
       color:'red',
       textAlign:'left'

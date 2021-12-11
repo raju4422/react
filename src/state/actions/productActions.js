@@ -13,3 +13,11 @@ export const selectedProduct=(product)=>{
         payload:product
     }
     }
+
+
+    export const getUsers=(data)=>{
+        return {
+            type:actionType.SELECTED_PRODUCT,
+            payload:data
+        }
+        }

@@ -7,11 +7,18 @@ import {
     Link,useHistory , useParams
   } from "react-router-dom";
   import Edit from '../components/Edit'
+  import { useSelector } from 'react-redux';
+  import {useDispatch} from 'react-redux'
+  import {getUsers} from '../state/actions/productActions'
+
 
 
   
 function Users() {
+    
+    const dispatch = useDispatch();
     const [result,setResult]=useState([]);
+
 
     function deleteUser(e,id){
         e.preventDefault();
@@ -20,24 +27,30 @@ function Users() {
            axios.delete(`http://localhost/react/reactPhp/index.php/home/delete_user/${id}`).then(res=>{
               // console.log(res);
              // hist.push('/')
+             getUsersData();
            })
 
         }
 
     }
+    useEffect(() => {
+        getUsersData();
+       
+    }, [])
     
 
-
-
-    const usersFunction = useMemo(()=>{
-        axios.get('http://localhost/react/reactPhp/index.php/home/get_data').then(res=>{
-             setResult(res.data);
+    const getUsersData = async ()=>{
+        
+        const response = await axios.get('http://localhost/react/reactPhp/index.php/home/get_data').catch((error)=>{
+            console.log(error);
         })
-    },[result])
 
- 
+        dispatch({type:'GET_USERS',payload:response.data});
 
-    
+    } 
+
+    const users_data = useSelector((state)=>state.users.users);
+
 
 
     return (
@@ -52,7 +65,7 @@ function Users() {
                  </tr>
             </thead> 
             <tbody>
-            {result.map(tool=>(<tr key={tool.id}><td>{tool.name}</td><td>{tool.email}</td><td><Link to={{pathname: `/edit/${tool.id}`}}>Edit</Link> &nbsp; &nbsp; <a href="#" onClick={(e)=>deleteUser(e,tool.id)}> delete</a></td></tr>))}
+            {users_data.map(tool=>(<tr key={tool.id}><td>{tool.name}</td><td>{tool.email}</td><td><Link to={{pathname: `/edit/${tool.id}`}}>Edit</Link> &nbsp; &nbsp; <a href="#" onClick={(e)=>deleteUser(e,tool.id)}> delete</a></td></tr>))}
             </tbody>  
             </table>
            
