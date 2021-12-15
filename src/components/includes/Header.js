@@ -7,7 +7,7 @@ function Header(){
 	return(
 
          <div> 
-        <NavComponent />
+          <NavComponent />
 
          </div>
          

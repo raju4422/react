@@ -22,17 +22,18 @@ import Redux from './Redux';
 
 
 function NavComponent() {
-  const Theme = React.useContext(ThemeContext);
 
-  const activeChange=(e)=>{
+const [modal,setModal]=useState(false);  
+const Theme = React.useContext(ThemeContext);
+
+const activeChange=(e)=>{
 console.log(e.target);
   }
+  console.log(modal);
 
     return (
         <Router>
-
       <div className="">
-
 
        <nav className="navbar navbar-expand-lg navStyle">
             <Link className="brand-navbar" to="/"><img src="https://miro.medium.com/max/282/1*JSFjofdjIH5RDVf-qOODGw.png" alt="Responsive image" height="60px"/></Link>
@@ -43,16 +44,16 @@ console.log(e.target);
                 <ul className="navbar-nav ml-auto navList">
                     <li className="nav-item active"><Link to="/" className="nav-link"><i className="fas fa-home"></i>HOME<span className="sr-only">(current)</span></Link></li>
                     <li className="nav-item">
-                        <Link to="/" className="nav-link" onClick={activeChange}><i className="fas fa-cogs"></i>Services</Link>
+                        <Link to="/" className="nav-link" ><i className="fas fa-cogs"></i>Services</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/" className="nav-link" onClick={activeChange}><i className="fas fa-briefcase"></i>Portfolio</Link>
+                        <Link to="/" className="nav-link" ><i className="fas fa-briefcase"></i>Portfolio</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/users" className="nav-link" onClick={activeChange}><i className="fas fa-phone"></i>Users</Link>
+                        <Link to="/users" className="nav-link" ><i className="fas fa-phone"></i>Users</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/about" className="nav-link" onClick={activeChange}><i className="fas fa-users"></i>About</Link>
+                        <Link to="/about" className="nav-link" ><i className="fas fa-users"></i>About</Link>
                     </li>
                     <li className="nav-item">
                         <Link to="/useReducer" className="nav-link" ><i className="fas fa-users"></i>Use Reducer</Link>
@@ -63,38 +64,14 @@ console.log(e.target);
                     {Theme ?  <li>
                       <a href="#" className="nav-link">Logout</a>
                     </li> :  <li>
-                      <Link to="/login" className="nav-link">Login</Link>
+                      <a  onClick={()=>{setModal(true)}} className="nav-link" data-toggle="modal" data-target="#modalLoginForm">Login</a>
                     </li> }
                    
                 </ul>
             </div>
         </nav>
           
-
-
-
-     {/*   <nav className="navbar navbar-expand-sm bg-dark ">
-         <div className="row">
-         <div className="col-md-4"><h1 className="text-white">REACT</h1></div>
-         <div className="col-md-8">
-          <ul className="nav_bar navbar-nav " style={{listStyle:'none',width:'100%'}}>
-            <li className="nav-item">
-              <Link  className="nav-link" to="/">Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/about">Add</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/users">Users</Link>
-            </li>
-            <li>{theme}</li>
-          </ul>
-          </div>
-          </div>
-        </nav>
-*/}
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+   
         <Switch>
         <Route path="/" exact component={Home}>
           </Route>
@@ -116,6 +93,10 @@ console.log(e.target);
           
         </Switch>
       </div>
+
+      {modal? <Login/> : null}
+
+
     </Router>
     )
 }

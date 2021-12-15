@@ -31,7 +31,7 @@ const [effect,setEffect]=useState(false);
   const layer = (value) => {
     console.log(value);
     setEffect(value);
-     const timer = setTimeout(() => {
+      setTimeout(() => {
      setEffect(false)
   }, 1000);
 
