@@ -29,7 +29,6 @@ const Theme = React.useContext(ThemeContext);
 const activeChange=(e)=>{
 console.log(e.target);
   }
-  console.log(modal);
 
     return (
         <Router>

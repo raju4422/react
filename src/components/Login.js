@@ -9,7 +9,7 @@ function Login(){
   const dispatch = useDispatch();
   const session = useSelector(state => state.session.session.response);
   
-console.log('login_response',session)
+ console.log('login_response',session)
 
   const { register, handleSubmit, formState: { errors },reset } = useForm();
   
@@ -23,7 +23,9 @@ console.log('login_response',session)
       email:data.email,
       password:data.password
     }).then((res)=>{
-      dispatch({type:'SET_USER',payload:res.data});
+     // console.log(res);
+      dispatch({type:'SET_USER',payload:res.data.session_data});
+
 
     })
 
@@ -66,6 +68,9 @@ console.log('login_response',session)
               <div className="modal-footer d-flex justify-content-center">
                 <button  type="submit"  className="btn btn-default">Login</button>
               </div>
+
+             
+
             </div>
           </div>
           </form>
