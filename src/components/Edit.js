@@ -11,22 +11,23 @@ function Edit(props) {
     const history = useHistory();
 
     useEffect(()=>{
-        axios.post(`http://localhost/react/reactPhp/index.php/home/get_data_by_id/${props.match.params.id}`).then(res=>{
-            setData({
+        axios.post(`http://localhost:8000/api/get-user/${props.match.params.id}`).then(res=>{
+          console.log(res);
+        setData({
                 id:res.data.id,
-                name:res.data.name,
+                name:res.data.first_name,
                 email:res.data.email,
 
             })
             
         })
 
-        axios.get(`http://localhost/react/reactPhp/index.php/home/session`).then(res=>{
+        // axios.get(`http://localhost/react/reactPhp/index.php/home/session`).then(res=>{
            
-        setIsActive(res.data);
-        //console.log(res);
+        // setIsActive(res.data);
+        // //console.log(res);
             
-        })
+        // })
 
 
         return () => setData([]);
@@ -37,10 +38,10 @@ function Edit(props) {
         e.preventDefault();
 
         //console.log(data);
-       axios.post(`http://localhost/react/reactPhp/index.php/home/update`,{
+       axios.post(`http://localhost:8000/api/update`,{
          id:data.id,
          email:data.email,
-         name:data.name,
+         first_name:data.name,
        })
          .then(res => {
           if(res.status==200){

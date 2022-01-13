@@ -24,7 +24,7 @@ function Users() {
         e.preventDefault();
        
         if(window.confirm('Are you sure you want to delete')){
-           axios.delete(`http://localhost/react/reactPhp/index.php/home/delete_user/${id}`).then(res=>{
+           axios.delete(`http://localhost:8000/api/delete/${id}`).then(res=>{
               // console.log(res);
              // hist.push('/')
              getUsersData();
@@ -41,9 +41,10 @@ function Users() {
 
     const getUsersData = async ()=>{
         
-        const response = await axios.get('http://localhost/react/reactPhp/index.php/home/get_data').catch((error)=>{
+        const response = await axios.get('http://localhost:8000/api/users').catch((error)=>{
             console.log(error);
         })
+
 
         dispatch({type:'GET_USERS',payload:response.data});
 
@@ -65,7 +66,7 @@ function Users() {
                  </tr>
             </thead> 
             <tbody>
-            {users_data.map(tool=>(<tr key={tool.id}><td>{tool.name}</td><td>{tool.email}</td><td><Link to={{pathname: `/edit/${tool.id}`}}>Edit</Link> &nbsp; &nbsp; <a href="#" onClick={(e)=>deleteUser(e,tool.id)}> delete</a></td></tr>))}
+            {users_data.map(tool=>(<tr key={tool.id}><td>{tool.first_name}</td><td>{tool.email}</td><td><Link to={{pathname: `/edit/${tool.id}`}}>Edit</Link> &nbsp; &nbsp; <a href="#" onClick={(e)=>deleteUser(e,tool.id)}> delete</a></td></tr>))}
             </tbody>  
             </table>
            

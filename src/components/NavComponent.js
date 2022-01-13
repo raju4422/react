@@ -13,8 +13,6 @@ import Login from '../components/Login';
 import Users from '../components/Users';
 import Edit from '../components/Edit';
 import ReducerFunction from '../components/ReducerFunction'
-
-
 import {useState,useEffect,useContext} from 'react'
 import {ThemeContext} from '../App'
 import Redux from './Redux';

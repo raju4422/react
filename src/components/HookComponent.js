@@ -27,7 +27,7 @@
     
      const submit = (data)=> {
       
-      axios.post('http://localhost/react/reactPhp/index.php/home/insert',{
+      axios.post('http://localhost:8000/api/add-user',{
         email:data.email,
         password:data.password,
         name:data.name,
@@ -54,7 +54,7 @@
 
     const getUsersData = async ()=>{
         
-      const response = await axios.get('http://localhost/react/reactPhp/index.php/home/get_data').catch((error)=>{
+      const response = await axios.get('http://localhost:8000/api/users').catch((error)=>{
           console.log(error);
       })
 
